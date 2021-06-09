@@ -5,7 +5,8 @@ public class LeetCode {
 //        fizzBuzz(15);
 //        palindromeNumber(121);
 //        palindromeNumber(1221);
-//        palindromeNumber(1231);
+//        palindromeNumber(1231);\
+        factorialTrailingZeroes(15);
     }
 
     /**
@@ -46,5 +47,17 @@ public class LeetCode {
             System.out.println(original + " is palindrome");
         else
             System.out.println(original + " is not palindrome");
+    }
+
+    // T : O(log5 (n)) S : O(1)
+    private static void factorialTrailingZeroes(int fnum) {
+        int zerocount = 0;
+
+        while (fnum > 0) {
+            fnum /= 5;
+            zerocount += fnum;
+        }
+
+        System.out.println("Trailing zeroes are " + zerocount);
     }
 }
