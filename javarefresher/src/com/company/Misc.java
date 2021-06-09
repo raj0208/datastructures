@@ -5,6 +5,14 @@ public class Misc {
         // write your code here
 //        isAnagram("abc", "cba");
 //        isAnagram("ABba", "BabA");
+        trailingZeros(5);
+    }
+
+    /**
+     * Trailing Zeroes in th factorial
+     * @param number factorial of a number
+     */
+    private static void trailingZeros(int number) {
 
     }
 
