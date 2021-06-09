@@ -6,7 +6,10 @@ public class LeetCode {
 //        palindromeNumber(121);
 //        palindromeNumber(1221);
 //        palindromeNumber(1231);\
-        factorialTrailingZeroes(15);
+//        factorialTrailingZeroes(15);
+        //pow(2, 3);
+        //reverseString("Hello");
+        kthPositiveNumber();
     }
 
     /**
@@ -59,5 +62,68 @@ public class LeetCode {
         }
 
         System.out.println("Trailing zeroes are " + zerocount);
+    }
+
+    private static void pow(int num, int power) {
+        int ans = 1;
+
+        while (power > 0) {
+            if (power % 2 == 0) {
+                num = num * num;
+                power = power / 2;
+            } else {
+                ans = ans * num;
+                power = power - 1;
+            }
+        }
+
+        System.out.println(ans);
+    }
+
+    /* STRING */
+    private static void reverseString(String str) {
+        if (str == null || str.isEmpty()) {
+            System.out.println("String is empty");
+            return;
+        }
+        char[] cstr = str.toCharArray();
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while(left < right) {
+            char c = cstr[right];
+            cstr[right] = cstr[left];
+            cstr[left] = c;
+
+            left++;
+            right--;
+        }
+
+        System.out.println(new String(cstr));
+    }
+
+    private static void kthPositiveNumber() {
+        int[] arr = new int[] {2,3,4,7,11};
+        int k = 5;
+
+        int lastIndex = 0;
+        int last = arr.length + k + 1;
+        int i = 0;
+        boolean exist = false;
+
+        for(i = 1; i < last; i++) {
+            for (int j = lastIndex; j < arr.length; j++) {
+                if (exist = (arr[j] == i)) {
+                    lastIndex = j;
+                    break;
+                }
+            }
+
+            if (!exist && --k == 0)
+                break;
+        }
+
+        System.out.println(i);
     }
 }
