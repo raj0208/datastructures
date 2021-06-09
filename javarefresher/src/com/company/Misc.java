@@ -3,11 +3,16 @@ package com.company;
 public class Misc {
     public static void run() {
         // write your code here
-        isAnagram("abc", "cba");
-        isAnagram("ABba", "BabA");
+//        isAnagram("abc", "cba");
+//        isAnagram("ABba", "BabA");
 
     }
 
+    /**
+     * IsAnagram
+     * @param s1 string one
+     * @param s2 string two
+     */
     private static void isAnagram(String s1, String s2) {
         // none of parameters should be null
         // length of both string should be same
