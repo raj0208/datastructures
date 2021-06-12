@@ -165,7 +165,7 @@ public class LeetCode {
     }
 
     private static void maxArea() {
-        int[] height = new int[] {3,5,2,4,5};
+        int[] height = new int[] {0,1,0,2,1,0,1,3,2,1,2,1};
 
         if (height == null || height.length == 0) {
             System.out.println("no size");
