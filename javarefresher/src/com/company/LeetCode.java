@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class LeetCode {
@@ -13,7 +14,9 @@ public class LeetCode {
         //reverseString("Hello");
 //        kthPositiveNumber();
 //        maxAreaHistogram();
-        maxArea();
+//        maxArea();
+//        pascalTriangle();
+        kthrowinpascaltriangle();
     }
 
     /**
@@ -185,5 +188,64 @@ public class LeetCode {
         }
 
         System.out.println("Max Area is " + area);
+    }
+
+    private static void pascalTriangle() {
+        int numRow = 5;
+
+        if (numRow <= 0) {
+            System.out.println("Empty");
+            return;
+        }
+
+        ArrayList<ArrayList<Integer>> triangle = new ArrayList<>();
+
+        ArrayList<Integer> previous = new ArrayList<>();
+
+
+        previous.add(1);
+        triangle.add(previous);
+
+        for(int i = 2; i <= numRow; i++) {
+            ArrayList<Integer> current = new ArrayList<>();
+
+            current.add(1); // first
+            for(int j = 0; j < previous.size() - 1; j++) {
+                current.add(previous.get(j) + previous.get(j + 1));
+            }
+            current.add(1); // last
+
+            triangle.add(current);
+            previous = current;
+        }
+
+        for(ArrayList<Integer> list : triangle) {
+            for (int i : list) {
+                System.out.print(i + " ");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    private static void kthrowinpascaltriangle() {
+        int kthrow = 5;
+
+        if (kthrow <= 0)
+            return;
+
+        ArrayList<Integer> row = new ArrayList<>();
+        row.add(1);
+
+        for(int i = 1; i <= kthrow; i++) {
+            for(int j = row.size() - 2; j >= 0; j--) {
+                row.set(j + 1, row.get(j) + row.get(j + 1));
+            }
+            row.add(1);
+        }
+
+        for (int i: row) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
     }
 }
