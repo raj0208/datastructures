@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Stack;
+
 public class LeetCode {
     public static void run() {
 //        fizzBuzz(15);
@@ -9,7 +11,9 @@ public class LeetCode {
 //        factorialTrailingZeroes(15);
         //pow(2, 3);
         //reverseString("Hello");
-        kthPositiveNumber();
+//        kthPositiveNumber();
+//        maxAreaHistogram();
+        maxArea();
     }
 
     /**
@@ -125,5 +129,61 @@ public class LeetCode {
         }
 
         System.out.println(i);
+    }
+
+    private static void maxAreaHistogram() {
+        // input parameter
+        int[] hist = new int [] {2,1,5,6,2,3};
+
+        if (hist == null || hist.length == 0) {
+            System.out.println("Nothing to calculate");
+        }
+
+        int max = 0;
+        int index = 0;
+        Stack<Integer> stack = new Stack<Integer>();
+
+        while (index < hist.length) {
+            // Push the index if the current index height > previous one
+            if (stack.isEmpty() || hist[index] > hist[stack.peek()]) {
+                stack.push(index);
+                index++;
+            } else { // calc max height
+                int height = hist[stack.pop()];
+                int width = stack.isEmpty() ? index : index - stack.peek() - 1;
+                max = Math.max(max, height * width);
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            int height = hist[stack.pop()];
+            int width = stack.isEmpty() ? index : index - stack.peek() - 1;
+            max = Math.max(max, height * width);
+        }
+
+        System.out.println("max height is " + max);
+    }
+
+    private static void maxArea() {
+        int[] height = new int[] {3,5,2,4,5};
+
+        if (height == null || height.length == 0) {
+            System.out.println("no size");
+            return;
+        }
+
+        int left = 0;
+        int right = height.length - 1;
+        int area = 0;
+        while (left < right) {
+            area = Math.max(area, Math.min(height[left], height[right]) * (right - left));
+
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+
+        System.out.println("Max Area is " + area);
     }
 }

@@ -3,8 +3,8 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        CTCI.run();
-        //LeetCode.run();
+//        CTCI.run();
+        LeetCode.run();
 //        Misc.run();
     }
 }
