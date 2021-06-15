@@ -1,10 +1,12 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class LeetCode {
-    public static void run() {
+    public static void main(String[] args) {
 //        fizzBuzz(15);
 //        palindromeNumber(121);
 //        palindromeNumber(1221);
@@ -16,7 +18,8 @@ public class LeetCode {
 //        maxAreaHistogram();
 //        maxArea();
 //        pascalTriangle();
-        kthrowinpascaltriangle();
+//        kthrowinpascaltriangle();
+        mergeIntervals();
     }
 
     /**
@@ -247,5 +250,46 @@ public class LeetCode {
             System.out.print(i + " ");
         }
         System.out.println();
+    }
+
+    private static void mergeIntervals() {
+        List<Integer[]> intervals = getIntervals();
+        List<Integer[]> result = new ArrayList<>();
+
+        if (intervals == null || intervals.size() == 0) {
+            System.out.println("Nothing to merge");
+            return;
+        }
+
+        // sort the intervals by start.  if start is same, then by end
+        Collections.sort(intervals, (x, y) -> (x[0] != y[0]) ? x[0] - y[0] : x[1] -y[1]);
+
+        Integer[] previous = intervals.get(0);
+        Integer[] current;
+        for (int i = 0; i < intervals.size(); i++) {
+            current = intervals.get(i);
+
+            if (current[0] > previous[1]) {
+                result.add(previous);
+                previous = current;
+            } else {
+                previous = new Integer[] {previous[0], Math.max(previous[1], current[1]) };
+            }
+        }
+        result.add(previous);
+
+        for (Integer[] interval : result) {
+            System.out.println("[" + interval[0] + ", " + interval[1] + "]");
+        }
+    }
+
+    private static ArrayList<Integer[]> getIntervals() {
+        ArrayList<Integer[]> intervals = new ArrayList<>();
+        intervals.add(new Integer[] { 1, 3 });
+        intervals.add(new Integer[] { 2, 6 });
+        intervals.add(new Integer[] { 8, 10 });
+        intervals.add(new Integer[] { 15, 18 });
+
+        return intervals;
     }
 }
