@@ -41,6 +41,7 @@ class SetTest {
 
     @Test
     public void testCanGrow() {
+        assertThrows(IllegalArgumentException.class, () -> { new Set(0); });
         Set s = new Set(1);
         for (int i = 0; i < 10; i++) {
             s.add(i);

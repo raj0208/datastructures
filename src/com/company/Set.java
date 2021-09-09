@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Set {
     private int count;
     private Object[] data;
+    private int capacity;
 
     public Set() {
         this(5);
@@ -13,7 +14,7 @@ public class Set {
     public Set(int capacity) {
         if (capacity <= 0)
             throw new IllegalArgumentException("capacity should be greater than zero");
-
+        this.capacity = capacity;
         this.data = new Object[capacity];
     }
 
@@ -24,9 +25,10 @@ public class Set {
     public void add(Object value) {
         if (contains(value)) return;
 
-        if (data.length == count) {
-            Object[] t = new Object[count * 2 + 1];
-            Arrays.copyOfRange(data, 0, data.length - 1);
+        if (count == capacity) {
+            capacity *= 2;
+            Object[] t = new Object[capacity];
+            System.arraycopy(data, 0, t, 0, count);
             data = t;
         }
 
