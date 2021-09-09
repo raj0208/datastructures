@@ -53,7 +53,13 @@ class SetTest {
     public void testRemove() {
         Set s = new Set(1);
         s.add(1);
+        s.add(2);
+        s.add(3);
+        s.add(4);
+        assertTrue(s.remove(2));
         assertTrue(s.remove(1));
+        assertTrue(s.remove(3));
+        assertTrue(s.remove(4));
         assertFalse(s.remove(5));
     }
 }
