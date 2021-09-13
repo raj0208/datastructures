@@ -11,7 +11,6 @@ class SetTest {
     private Set hasOne = new Set();
     private Set hasMany = new Set();
 
-    @BeforeEach
     public void setup() {
         hasOne.add(1);
         hasMany.add(1);
@@ -21,6 +20,7 @@ class SetTest {
 
     @Test
     public void testIsEmpty() {
+        setup();
         assertEquals(true, empty.isEmpty());
         assertEquals(false, hasOne.isEmpty());
         assertEquals(false, hasMany.isEmpty());
@@ -28,12 +28,14 @@ class SetTest {
 
     @Test
     public void testAddItem() {
+        setup();
         assertEquals(1, hasOne.size());
         assertEquals(3, hasMany.size());
     }
 
     @Test
     public void testContains() {
+        setup();
         assertEquals(true, hasOne.contains(1));
         assertEquals(true, hasMany.contains(2));
         assertEquals(false, hasMany.contains(10));
